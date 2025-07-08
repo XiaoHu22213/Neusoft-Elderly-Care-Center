@@ -1,0 +1,54 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.80.128:3306/home?serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    hikari:
+      maximum-pool-size: 17
+      minimum-idle: 8
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 20MB
+  mail:
+    host: smtp.qq.com
+    port: 465
+    username: 1316482334@qq.com
+    password: isfrjarqpjlsbaeb
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+  redis:
+    host: 192.168.80.128
+    port: 6379
+mybatis-plus:
+  type-aliases-package: com.neuedu.entity
+logging:
+  level:
+    com.neuedu.mapper: debug
+minio:
+  config:
+    endpoint: http://192.168.80.128:9000
+    username: admin
+    password: 123456789
+knife4j:
+  enable: true
+filter:
+  white:
+    urls:
+      - /user/add
+      - /user/change
+      - /user/login
+      - /user/check
+      - /api/sendcode
+      - /api/verifycode
+      - /doc.html
+      - /favicon.ico
+      - /swagger-resources
+      - /v2/api-docs
+      - /webjars/**

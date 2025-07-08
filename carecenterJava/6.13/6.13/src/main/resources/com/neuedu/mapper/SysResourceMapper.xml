@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neuedu.mapper.SysResourceMapper">
+    <select id="getByUserId" resultType="SysResource" parameterType="java.lang.Long">
+        select distinct
+            a.id,
+            a.name,
+            a.description,
+            a.parent_id as parentId,
+            a.front_url as frontUrl,
+            a.back_url  as backUrl,
+            a.level,
+            a.type
+        from
+            user_role as b
+        inner join
+            role as c
+        on
+           b.role_id = c.id
+        inner join
+            role_resource as d
+        on
+            b.role_id = d.role_id
+        inner join
+             sys_resource as a
+        on
+             d.resource_id = a.id
+        where
+              b.user_id = #{userId} and c.status = 1
+    </select>
+</mapper>

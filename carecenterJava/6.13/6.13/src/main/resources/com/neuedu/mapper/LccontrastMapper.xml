@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neuedu.mapper.LccontrastMapper">
+    <select id="selectFullJoinData" resultType="com.neuedu.entity.Temp">
+        SELECT lc.*, nc.nursecontent
+        FROM lccontrast as lc
+                 INNER JOIN  nursecontent as nc ON lc.cid = nc.id
+        WHERE lc.lid = #{lid} and nc.status = 1
+    </select>
+    <select id="getbyID" resultType="com.neuedu.entity.Tem">
+        SELECT lc.cid,lc.executecycle,lc.executenub
+        FROM lccontrast as lc
+        WHERE lc.lid = #{id}
+    </select>
+</mapper>

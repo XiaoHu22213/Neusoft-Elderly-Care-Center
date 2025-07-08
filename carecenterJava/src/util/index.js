@@ -1,0 +1,1 @@
+export const getPath = (path) => 'http://192.168.80.196:9000' + path

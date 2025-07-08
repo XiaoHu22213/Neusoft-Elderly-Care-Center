@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neuedu.mapper.CustomcontentMapper">
+    <select id="getlist" resultType="com.neuedu.entity.Tempcc">
+        SELECT cc.*, nc.nursecontent
+        FROM customcontent as cc
+                 INNER JOIN  nursecontent as nc ON cc.cid = nc.id
+        WHERE cc.cuid = #{cuid} and nc.status = 1
+    </select>
+    <select id="getcontent" resultType="com.neuedu.entity.Nursecontent">
+        SELECT  nc.*
+        FROM customcontent as cc
+                 INNER JOIN  nursecontent as nc ON cc.cid = nc.id
+        WHERE cc.cuid = #{cuid} and nc.status = 1
+    </select>
+    <select id="getallcontent" resultType="com.neuedu.entity.Nurse">
+        SELECT  user.name ,user.id
+        FROM user
+        WHERE  user.status = 1
+    </select>
+    <select id="getnurse" resultType="com.neuedu.entity.Nurse">
+        SELECT  user.name ,user.id
+        FROM user
+        WHERE user.type ="护工" and user.status = 1
+    </select>
+    <select id="getByccId" resultType="com.neuedu.entity.Customcontent">
+        SELECT  cc.*
+        FROM customcontent as cc
+        WHERE cc.cuid = #{cuid} and cc.cid = #{cid}
+    </select>
+</mapper>
